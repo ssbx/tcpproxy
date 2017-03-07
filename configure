@@ -1,0 +1,26 @@
+#!/bin/sh
+
+#
+# Configuration used for development:
+#export CC="/usr/bin/clang-3.5"; CFLAGS="-std=c11 -O3"
+
+for var in "$@"; do
+    varname=$(echo $var | cut -s -f 1 -d =)
+    if [ $varname = 'CFLAGS' ]; then
+        CFLAGS=$(echo $var | cut -d= -f2-)
+        continue
+    fi
+    if [ $varname = 'CC' ]; then
+        export CC=$(echo $var | cut -d= -f2-)
+        continue
+    fi
+done
+
+# cleanup build dir if exist
+rm -rf _build
+
+# create Unix Makefiles project
+mkdir _build && cd _build && cmake -DCMAKE_C_FLAGS="${CFLAGS}" ..
+
+echo "You can now run \"make\""
+
