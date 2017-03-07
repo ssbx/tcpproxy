@@ -5,9 +5,6 @@ project (tcpproxy)
 #include_directories(. ${OPENSSL_INCLUDE_DIR})
 include_directories(.)
 
-configure_file(
-    ${CMAKE_SOURCE_DIR}/Makefile.in ${CMAKE_SOURCE_DIR}/Makefile)
-
 add_executable(tcpproxy
     main.c)
 

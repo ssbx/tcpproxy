@@ -1,5 +1,6 @@
 #!/bin/sh
 
+
 #
 # Configuration used for development:
 #export CC="/usr/bin/clang-3.5"; CFLAGS="-std=c11 -O3"
@@ -22,5 +23,25 @@ rm -rf _build
 # create Unix Makefiles project
 mkdir _build && cd _build && cmake -DCMAKE_C_FLAGS="${CFLAGS}" ..
 
+# Create a helper makefile
+cd ..
+echo "
+.PHONY: all clean_all test
+
+all:
+	make -C _build all
+
+clean_all:
+	rm -rf _build; rm Makefile
+
+test: all
+	make -C _build test
+
+%:
+	make -C _build $@
+" > Makefile
+
+# ok
 echo "You can now run \"make\""
+
 
