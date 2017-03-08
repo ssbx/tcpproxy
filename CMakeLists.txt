@@ -5,7 +5,6 @@ project (tcpproxy)
 #include_directories(. ${OPENSSL_INCLUDE_DIR})
 include_directories(.)
 
-add_executable(tcpproxy
-    main.c)
+add_executable(tcpproxy main.c)
 
 target_link_libraries(tcpproxy ${OPENSSL_LIBRARIES})
