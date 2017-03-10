@@ -1,6 +1,8 @@
 #!/bin/sh
 
 
+git submodule update --init --recursive
+
 #
 # Configuration used for development:
 #export CC="/usr/bin/clang-3.5"; CFLAGS="-std=c11 -O3"
